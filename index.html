@@ -1,0 +1,21 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect('http://localhost:9001');
+  socket.on('connected', function (data) {
+    console.log(data);
+    socket.emit('userType', { type: 'user' });
+  });
+  
+  socket.on('gotOne', function (data) {
+    console.log(data);
+    socket.emit('userType', { type: 'user' });
+  });
+  
+   
+  function newEvent(){
+     socket.emit('newEvent', { });  
+  }
+</script>
+<body>
+    <button onclick="newEvent()">Add Event</button>
+</body>

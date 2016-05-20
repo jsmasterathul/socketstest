@@ -1,0 +1,23 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect('http://localhost:9001');
+  var user;
+  socket.on('connected', function (data) {
+    console.log(data);
+    socket.emit('userType', { type: 'vendor' });
+  });
+  
+  socket.on('message',function(data){
+      user=data;
+      console.log("Only vendor should see this"+data);
+  });
+  
+  function expressIntrest(){
+     socket.emit('expressIntrest', { user});  
+  }
+
+</script>
+
+<body>
+    <button onclick="expressIntrest()">Add Event</button>
+</body>
